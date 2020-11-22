@@ -1,0 +1,36 @@
+<?php
+$user = $this->identity();
+?>
+<header>
+    <nav class="navbar navbar-dark bg-primary navbar-fixed-top">
+        <a class="navbar-brand" href="/"><i class="fa fa-home">&nbsp;</i> Admin</a>
+        <ul class="nav navbar-nav pull-right">
+        <?php if ($user): ?>
+            <li class="nav-item">
+                <a href="#" class="nav-link"><?php echo $user->getNameSurname() ?></a>
+            </li>
+        <?php endif ?>
+            <li class="dropdown nav-item">
+              <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                <i class="fa fa-gear"></i>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <?php
+                        foreach (\Core\I18n\Locale::getAvailableLocales() as $key => $value) {
+                            $flag = strtolower(explode('_', $key)[1]);
+                            echo '<a href="/locale/change?set='.$key.'" class="dropdown-item"><i class="flag flag-'.$flag.'"></i> &nbsp;'.$value.'</a>';
+                        }
+                    ?>
+              </div>
+            </li>
+        <?php if ($user): ?>
+            <li class="nav-item">
+                <a href="/auth/logout" class="nav-link">
+                    <?php echo $this->translate('Logout') ?> &nbsp; <span class="fa fa-sign-out"></span>
+                </a>
+            </li>
+        <?php endif ?>
+        </ul>
+    </nav>
+
+</header>

@@ -1,0 +1,38 @@
+<?php echo $this->pageTitle($this->translate('Authorization Required')); ?>
+<br />
+<?php if ($this->failed): ?>
+    <p class="lead text-danger"><?php echo $this->failed ?></p>
+<?php else: ?>
+    <p class="lead"><?php echo $this->translate('The page you have requested requires authorization. Please login to continue..') ?></p>
+<?php endif ?>
+
+<?php
+    echo $this->notification()->error();
+
+    $this->loginForm->prepare();
+    echo $this->form()->openTag($this->loginForm);
+?>
+    <fieldset class="form-group">
+    <label><?php echo $this->loginForm->get('email')->getLabel() ?></label>
+    <?php echo $this->formElement($this->loginForm->get('email')); ?>
+    </fieldset>
+
+    <fieldset class="form-group">
+    <label><?php echo $this->loginForm->get('password')->getLabel() ?></label>
+    <?php echo $this->formElement($this->loginForm->get('password')); ?>
+    </fieldset>
+  
+    <?php echo $this->formElement($this->loginForm->get('csrf')); ?>
+
+    <fieldset class="form-group">
+    <label><?php echo $this->loginForm->get('captcha')->getLabel() ?></label>
+    <?php echo $this->formElement($this->loginForm->get('captcha')); ?>
+    </fieldset>
+<?php
+
+    // Submit
+    echo $this->formRow($this->loginForm->get('submit'));
+
+    echo $this->form()->closeTag();
+?>
+<br /><br />

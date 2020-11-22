@@ -1,0 +1,70 @@
+version: '2'
+
+services:
+### Nginx Server Container ##################################
+    nginx:
+        build: .docker/nginx
+        volumes_from:
+            - volumes_source
+        volumes:
+            - ./data/logs/nginx/:/var/log/nginx
+        ports:
+            - "8080:80"
+            - "4430:443"
+        links:
+            - php-fpm
+
+### PHP-FPM Container #######################################
+    php-fpm:
+        build:
+            context: .docker/php-fpm
+        volumes_from:
+            - volumes_source
+        expose:
+            - "9000"
+        links:
+            - workspace
+
+### DB Container #########################################
+    pgsql:
+        build: .docker/pgsql
+        volumes_from:
+            - volumes_data
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_DB: zf2-boilerplate
+            POSTGRES_USER: zf2-boilerplate
+            POSTGRES_PASSWORD: secret
+            MYSQL_ROOT_PASSWORD: root
+
+### Redis Container #########################################
+    redis:
+        build: .docker/redis
+        volumes_from:
+            - volumes_data
+        ports:
+            - "6379:6379"
+
+### Workspace Utilities Container ###########################
+    workspace:
+        build:
+            context: .docker/workspace
+            args:
+                - INSTALL_PRESTISSIMO=false
+        volumes_from:
+            - volumes_source
+        tty: true
+
+### ZF2 Application Code Container ######################
+    volumes_source:
+        build: .docker/volumes/application
+        volumes:
+            - ./:/var/www/zf2-boilerplate
+
+### Databases Data Container ################################
+    volumes_data:
+        build: .docker/volumes/data
+        volumes:
+            - ./.docker/volumes/mysql:/var/lib/mysql
+            - ./.docker/volumes/redis:/data

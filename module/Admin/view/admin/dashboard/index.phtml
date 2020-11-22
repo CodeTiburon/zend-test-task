@@ -1,0 +1,24 @@
+<br />
+<ol class="breadcrumb">
+  <li><a href="#">Home</a></li>
+  <li><a href="#">Breadcrumb</a></li>
+  <li class="active">Links</li>
+</ol>
+
+<div class="jumbotron">
+    <h2><?php echo $this->translate('Dashboard') ?></h2>
+    <p>
+        <?php
+            echo sprintf($this->translate("You just logged-in to zf2 boilerplate app's administration interface as <strong>%s</strong>"), $this->identity()->getNameSurname());
+        ?>
+    </p>
+
+    <small>
+        <?php echo $this->translate('Last login date') ?>: 
+        <?php echo $this->dateFormat($this->identity()->getLastLoginDate(),
+                                     IntlDateFormatter::LONG,
+                                     IntlDateFormatter::SHORT
+                                     ); ?>
+    </small>
+
+</div>

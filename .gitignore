@@ -1,0 +1,43 @@
+# Well known noises
+*~
+._*
+.~lock.*
+.DS_Store
+
+# Editors, IDEs
+nbproject
+.buildpath
+.idea
+*.sublime-project
+*.sublime-workspace
+
+# Composer related
+vendor/
+
+# Persistency related
+data/DoctrineORMModule/
+
+# Cache Folder
+data/cache/
+
+# Logging
+data/logs/*
+
+# Build automation related
+bower_components/
+node_modules/
+assets/js/generate/*
+assets/css/generate/*
+public/css/
+public/js/
+public/img/
+public/fonts/
+public/testresults
+public/apple-touch-icon-precomposed.png
+public/crossdomain.xml
+public/favicon.ico
+public/humans.txt
+public/robots.txt
+
+# ZF2 Configs ignore
+config/autoload/*.php

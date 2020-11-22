@@ -1,0 +1,42 @@
+<?php echo $this->doctype(); ?>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle('ZF2 Boilerplate Administration')->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?php echo $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+        <link rel="stylesheet" href="/css/zf2-boilerplate.css" />
+        <!-- Scripts -->
+        <?php
+        echo $this->headLink([
+            'rel' => 'shortcut icon',
+            'type' => 'image/vnd.microsoft.icon',
+            'href' => '/img/favicon.ico'
+            ]);
+        ?>
+
+    </head>
+    <body>
+        <?php echo $this->partial('partial/header.phtml'); ?>
+        <div class="container">
+            <?php echo $this->content; ?>
+        </div> <!-- /container -->
+        <hr />
+        
+        <footer>
+            <div class="container-fluid">
+                <p>
+                    <small>
+                        Copyleft ZF2 Boilerplate, <?php echo date('Y') ?> - Rendered in ~<?php echo (microtime(true) - REQUEST_STARTED) * 1000 , ' ms'; ?>
+                    </small>
+                </p>
+            </div>
+        </footer>
+        
+
+        <script src="/js/zf2-boilerplate-admin.js"></script>
+        <?php echo $this->inlineScript() ?> 
+    </body>
+</html>
