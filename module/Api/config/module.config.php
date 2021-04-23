@@ -5,6 +5,7 @@
 return [
     'service_manager' => [
         'factories' => [
+            Api\V1\Contact\ContactResource::class  => Api\V1\Contact\ContactResourceFactory::class,
             Api\V1\User\UserResource::class        => Api\V1\User\UserResourceFactory::class,
             Api\OAuth\Storage\Adapter\Redis::class => Api\OAuth\Storage\Adapter\RedisFactory::class,
             Api\OAuth\Storage\Adapter\Pdo::class   => Api\OAuth\Storage\Adapter\PdoFactory::class,
@@ -19,6 +20,16 @@ return [
                     'route'    => '/user[/:user_id]',
                     'defaults' => [
                         'controller' => 'Api\V1\User\Controller',
+                    ],
+                ],
+            ], // end of api.rest.user
+            'api.rest.contact' => [
+                'type'    => 'Segment',
+                'options' => [
+                    'route'     => '/contacts[/:contact_id]',
+                    'constraint' => ['contact_id' => '[0-9]+'],
+                    'defaults'  => [
+                        'controller' => 'Api\V1\Contact\Controller',
                     ],
                 ],
             ], // end of api.rest.user
@@ -77,6 +88,26 @@ return [
             'collection_class'           => Api\V1\User\UserCollection::class,
             'service_name'               => 'User',
         ],
+        'Api\V1\Contact\Controller' => [
+            'listener'              => Api\V1\Contact\ContactResource::class,
+            'route_name'            => 'api.rest.contact',
+            'route_identifier_name' => 'contact_id',
+            'collection_name'       => 'contact',
+            'entity_http_methods'   => [
+                0 => 'GET',
+                1 => 'POST',
+            ],
+            'collection_http_methods' => [
+                0 => 'GET',
+                1 => 'POST',
+            ],
+            'collection_query_whitelist' => [],
+            'page_size'                  => 25,
+            'page_size_param'            => null,
+            'entity_class'               => Api\V1\Contact\ContactEntity::class,
+            'collection_class'           => Api\V1\Contact\ContactCollection::class,
+            'service_name'               => 'Contact',
+        ],
     ],
     'zf-content-negotiation' => [
         'controllers' => [
@@ -88,13 +119,27 @@ return [
                 1 => 'application/hal+json',
                 2 => 'application/json',
             ],
+            'Api\V1\Contact\Controller' => [
+                0 => 'application/vnd.example.v1+json',
+                1 => 'application/hal+json',
+                2 => 'application/json',
+            ],
         ],
         'content_type_whitelist' => [
             'Api\V1\User\Controller' => [
                 0 => 'application/vnd.example.v1+json',
                 1 => 'application/json',
             ],
+            'Api\V1\Contact\Controller' => [
+                0 => 'application/vnd.example.v1+json',
+                1 => 'application/json',
+            ],
         ],
+        'x_access_whitelist' => [
+            'Api\V1\Contact\Controller' => [
+                0 => 'allowed',
+            ],
+        ]
     ],
     'zf-hal' => [
         'metadata_map' => [
@@ -110,15 +155,33 @@ return [
                 'route_identifier_name'  => 'user_id',
                 'is_collection'          => true,
             ],
+            'Api\V1\Contact\ContactEntity' => [
+                'entity_identifier_name' => 'id',
+                'route_name'             => 'api.rest.contact',
+                'route_identifier_name'  => 'contact_id',
+                'hydrator'               => Zend\Stdlib\Hydrator\ObjectProperty::class,
+            ],
+            'Api\V1\Contact\ContactCollection' => [
+                'entity_identifier_name' => 'id',
+                'route_name'             => 'api.rest.contact',
+                'route_identifier_name'  => 'contact_id',
+                'is_collection'          => true,
+            ],
         ],
     ],
     'zf-content-validation' => [
         'Api\V1\User\Controller' => [
             'input_filter' => 'Api\V1\User\Validator',
         ],
+        'Api\V1\Contact\Controller' => [
+            'input_filter' => 'Api\V1\Contact\Validator',
+        ],
     ],
     'input_filter_specs' => [
         'Api\V1\User\Validator' => [
+
+        ],
+        'Api\V1\Contact\Validator' => [
 
         ],
     ],

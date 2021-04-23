@@ -53,8 +53,8 @@ class UserResource extends AbstractResourceListener
     public function fetchAll($params = [])
     {
         // Example usage identity information
-        // $identity = $this->getIdentity()->getAuthenticationIdentity();
-
+        //$identity = $this->getIdentity()->getAuthenticationIdentity();
+        var_dump( $this->userService );exit;
 
         return [['foo' => 'bar']];
     }

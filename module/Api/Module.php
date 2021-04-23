@@ -67,7 +67,7 @@ class Module
                 $problem = null;
                 if ($event->isError()) {
                     $exception = $event->getParam("exception");
-
+                    var_dump($exception);exit;
                     // There are some other errors like that :
                     // "error-controller-cannot-dispatch",
                     // "error-controller-invalid",
@@ -88,7 +88,8 @@ class Module
                 } else {
                     $problem = new ApiProblem(500, "Unknown Error!");
                 }
-
+                    $problem = new ApiProblem(500, "Unknown Error!");
+                
                 $response = new ApiProblemResponse($problem);
                 $event->stopPropagation();
 

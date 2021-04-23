@@ -14,6 +14,7 @@ return array(
             'core.service.auth'         => 'Core\Service\Factory\AuthenticationServiceFactory',
             'core.service.registration' => 'Core\Service\Factory\RegistrationServiceFactory',
             'core.service.user'         => 'Core\Service\Factory\UserServiceFactory',
+            'core.service.contact'      => 'Core\Service\Factory\ContactServiceFactory',
         ),
 
         'aliases' => array(
