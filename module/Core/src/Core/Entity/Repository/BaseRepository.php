@@ -10,7 +10,7 @@ namespace Core\Entity\Repository;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\Common\Persistence\ObjectRepository;
 
-class BaseRepository extends EntityRepository
+class BaseRepository /* extends EntityRepository */
 {
     /**
      * Inserts given entity on DB.

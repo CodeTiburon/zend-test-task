@@ -133,13 +133,9 @@ return [
             'Api\V1\Contact\Controller' => [
                 0 => 'application/vnd.example.v1+json',
                 1 => 'application/json',
+                'X-Access' => 'allowed',
             ],
         ],
-        'x_access_whitelist' => [
-            'Api\V1\Contact\Controller' => [
-                0 => 'allowed',
-            ],
-        ]
     ],
     'zf-hal' => [
         'metadata_map' => [

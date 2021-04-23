@@ -62,6 +62,12 @@ class ContactEntity
      */
     protected $canal;
 
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
     public function getName(): ?string
     {
         return $this->name;

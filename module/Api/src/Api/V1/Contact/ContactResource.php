@@ -32,16 +32,7 @@ class ContactResource extends AbstractResourceListener
      */
     public function fetch($id)
     {
-        var_dump('ContactResource -> fetch');exit;
-
-        try {
-            $data = $this->contactSearchService->getById($id);
-        } catch (\Exception $e) {
-            var_dump($e);exit;
-            return new ApiProblem($e->getCode(), $e->getMessage());
-        }
-
-        return $data;
+        return $this->contactService->findById($id);
     }
 
     /**
@@ -49,11 +40,7 @@ class ContactResource extends AbstractResourceListener
      */
     public function fetchAll($params = [])
     {
-        // Example usage identity information
-        // $identity = $this->getIdentity()->getAuthenticationIdentity();
-        // $contact = new Contact();
-        var_dump('ContactResource -> fetchAll', $this->contactService->getRepository()->getAllContacts());exit;
-        return [['foo' => 'bar']];
+        return $this->contactService->findAll($params);
     }
 
     /**
@@ -72,8 +59,13 @@ class ContactResource extends AbstractResourceListener
             $setter = 'set'.$key;
             $datakey = strtolower($key);
             $contactEntity->$setter($data->$datakey);
-        }     
+        }    
 
-        $this->contactService->create($contactEntity);
+        $errors = $this->contactService->create($contactEntity->toArray());
+ 
+        if(!is_null($errors)){
+
+            return new ApiProblem(406, ['error_code' => $errors]);
+        }
     }
 }

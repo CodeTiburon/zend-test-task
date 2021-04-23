@@ -25,39 +25,27 @@ class ContactService extends AbstractService
         $this->contactRepository    = $contactRepository;
     }
 
-    /**
-     * Changes given contact's default locale.
-     * 
-     * @param  Contact   $contact      Contact entity to update
-     * @param  string $newLocale
-     * 
-     * @return boolean
-     */
-    public function changeLocaleByContact(Contact $contact, $newLocale)
+    public function findById(int $id)
     {
-        $contact->setLanguage($newLocale);
-
-        $this->contactRepository->update($contact);
-
-        return true;
+        return $this->contactRepository->findById($id);
     }
 
-    /**
-     * @return ContactRepository
-     */
-    public function getRepository()
+    public function findAll($params)
     {
-        return $this->contactRepository;
+        return $this->contactRepository->findAll($params);
     }
 
-    public function create(Contact $contact)
+    public function create($data)
     {
-        try{
-            $this->contactRepository->save($contact);
-        }
-        catch(\Exception  $e){
+        $contact = new Contact();
 
-            
-        }
+        foreach(['Name', 'Email', 'Phone', 'Agence', 'Dept', 'Canal'] as $key){
+
+            $setter = 'set'.$key;
+            $datakey = strtolower($key);
+            $contact->$setter($data[$datakey]);
+        }    
+
+        return $this->contactRepository->create($contact);
     }
 }

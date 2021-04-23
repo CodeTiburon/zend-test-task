@@ -139,7 +139,7 @@ class Contact extends Base
 
     public function setCanal(string $canal): self
     {
-        $this->dept = $canal;
+        $this->canal = $canal;
 
         return $this;
     }
