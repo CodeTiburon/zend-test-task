@@ -1,7 +1,7 @@
 FROM postgres:10
 
 COPY ./local.conf /etc/postgresql/custom.conf
-COPY ./dump.sql /docker-entrypoint-initdb.d
+COPY initial_dump.sql /docker-entrypoint-initdb.d
 
 COPY healthcheck /usr/local/bin/
 

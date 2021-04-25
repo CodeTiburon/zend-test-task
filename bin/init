@@ -4,6 +4,6 @@ docker-compose -f docker-compose.yml -p test-zf down
 
 docker-compose -f docker-compose.yml -p test-zf build
 
-docker-compose -f docker-compose.yml -p test-zf up -d
+docker-compose -f docker-compose.yml -p test-zf up -d --force-recreate
 
 docker-compose -f docker-compose.yml -p test-zf ps

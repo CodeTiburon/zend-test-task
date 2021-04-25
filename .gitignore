@@ -41,5 +41,3 @@ public/robots.txt
 
 # ZF2 Configs ignore
 config/autoload/*.php
-
-.docker/volumes/postgresql/data/pg_stat_tmp

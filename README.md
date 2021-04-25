@@ -1,6 +1,18 @@
-## Welcome! 
+### Welcome! 
+
+#### Main goals of Test task from a technical management perspective:
+- candidate can analyze the incoming business goals and create a plan of how to  implement it
+- candidate can estimate his solution in hours or story points
+- candidate can work independently without the detailed technical description but strongly inline with acceptance criteria
+- candidate has strong experience with project technologies on the framework and database layer. 
+
+#### Main goals of Test task from a technical background of the candidate:
+- strong practical and enterprise experience with development API based on ZF2 ecosystem
+- base knowledge of PostgreSQL or MySQL dialects and complex querying for them
+- base knowledge of advanced SQL concepts such as Stored Procedures, Triggers, Views
+- practical experience with the implementation of Main Design Patterns such as "Factory", "Singleton", "Data Mapper"
     
-### To be successful in resolving the test task please follow the next steps:
+#### To be successful in resolving the test task please follow the next steps:
 - If you are reading this Readme It means you have the access to the repo. Please clone it to local machine.
 - Create your own feature branch where you will be able to commit your solution and create Pull Request at the final.
 - The project contains the folder directory "estimations". Please create an empty text file inside.
@@ -31,14 +43,28 @@ Otherwise, the exception with status code 401 should be fired.
 Please apply the setting to do this.
 - During the implementation of "Create contact" API endpoint, we need to consider the future feature "Search compound names". 
 - In the project We have already created file `sql/searchCompoundNamesIndex.sql`.
-- Please use SQL language to create DB query to follow the next acceptance criteria:
+- Please use SQL to create DB query to follow the next acceptance criteria:
     1) Create on DB table users INDEX USING GIN extension
-    2) the index should take as a value which is returned from function `fn_concat_user_attributes_by_space on table user`
-    3) need to develop DB function followed next signature `fn_concat_user_attributes_by_space(user.first_name VARCHAR, user.last_name VARCHAR)`
+    2) the index should take as a value which is returned from function `fn_concat_user_attributes_by_space on table users`
+    3) need to develop DB function followed next signature `fn_concat_user_attributes_by_space(users.first_name VARCHAR, users.last_name VARCHAR)`
     4) DB function encapsulated inside the logic to concatenate the arguments with space
+    
+#### This is our final goal. We wish you the successful completion of the planned steps. Please, do not forget to push the solution to GitHub. 
 
+#### Note! Provided tasks and scenarios take into account just simple solutions in the code base. No complex testing required. In common cases, test tasks should be resolved from 2 up 4 hours by an experienced developer. The main idea is the usage of previous experience with development projects based on the Zend Framework ecosystem. Common approaches and fundamental knowledge of Design Patterns will help to resolve tasks without complex step-by-step debugging and investigation of the local environment.
 
+#### On the other hand, in case the candidate will face the complexity of how to apply a solution without IDE code autosuggestions and step-by-step debugging. The usage of the local environment is available with some shell commands to simplify the setup process.
 
-### This is our final goal. We wish you the successful completion of the planned steps. Please, do not forget to push the solution to GitHub. 
+#### Preconditions od system requirement to use local environment:
+- Linux OS only: Ubuntu 18.04 LTS (Bionic Beaver) or MacOS
+- [Docker Engine: 18.09.0](http://docs.docker.com/install/)
+- [docker-compose](http://docs.docker.com/compose/install/)
+
+#### Local environment shell scripts:
+- Initialise local environment `bin/init`
+- Shutdown local environment `bin/down`
+- Review status of containers `bin/ps`
+- Start local environment at the second time `bin/run`
+- Review logs of containers `bin/logs`
 
 

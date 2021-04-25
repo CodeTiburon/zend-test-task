@@ -28,8 +28,8 @@ services:
 ### DB Container #########################################
     pgsql:
         build: .docker/postgresql
-        volumes_from:
-            - volumes_data
+        volumes:
+            - postgresql_local:/var/lib/postgresql/data
         ports:
             - "5432:5432"
         environment:
@@ -40,8 +40,8 @@ services:
 ### Redis Container #########################################
     redis:
         build: .docker/redis
-        volumes_from:
-            - volumes_data
+        volumes:
+            - redis_local:/data
         ports:
             - "6379:6379"
 
@@ -61,9 +61,7 @@ services:
         volumes:
             - ./:/var/www/zf2-boilerplate
 
-### Databases Data Container ################################
-    volumes_data:
-        build: .docker/volumes/data
-        volumes:
-            - ./.docker/volumes/postgresql/data:/var/lib/postgresql/data
-            - ./.docker/volumes/redis:/data
+### Databases Data Volumes ################################
+volumes:
+    postgresql_local:
+    redis_local:
