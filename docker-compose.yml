@@ -27,7 +27,7 @@ services:
 
 ### DB Container #########################################
     pgsql:
-        build: .docker/pgsql
+        build: .docker/postgresql
         volumes_from:
             - volumes_data
         ports:
@@ -36,7 +36,6 @@ services:
             POSTGRES_DB: zf2-boilerplate
             POSTGRES_USER: zf2-boilerplate
             POSTGRES_PASSWORD: secret
-            MYSQL_ROOT_PASSWORD: root
 
 ### Redis Container #########################################
     redis:
@@ -66,5 +65,5 @@ services:
     volumes_data:
         build: .docker/volumes/data
         volumes:
-            - ./.docker/volumes/mysql:/var/lib/mysql
+            - ./.docker/volumes/postgresql/data:/var/lib/postgresql/data
             - ./.docker/volumes/redis:/data

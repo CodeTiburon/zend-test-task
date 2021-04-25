@@ -50,26 +50,6 @@ RUN mkdir -p /usr/share/man/man1 && mkdir -p /usr/share/man/man7 \
     && locale-gen en_US.UTF-8 \
     && sed -i '/access.log/d' /usr/local/etc/php-fpm.d/docker.conf
 
-# install mcrypt library
-RUN docker-php-ext-install mcrypt
-
-RUN docker-php-ext-install mcrypt
-
-# configure gd library
-RUN docker-php-ext-configure gd \
-    --enable-gd-native-ttf \
-    --with-jpeg-dir=/usr/lib \
-    --with-freetype-dir=/usr/include/freetype2
-
-# Install extensions using the helper script provided by the base image
-RUN docker-php-ext-install \
-    pdo_mysql \
-    gd
-
-# Install xdebug
-RUN pecl install xdebug \
-    && docker-php-ext-enable xdebug
-
 # Install APCu and APC backward compatibility
 RUN pecl install apcu \
     && pecl install apcu_bc-1.0.3 \
