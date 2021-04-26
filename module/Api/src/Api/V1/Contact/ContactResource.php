@@ -52,6 +52,8 @@ class ContactResource extends AbstractResourceListener
     public function create($data)
     {
         $contactEntity = $this->getEntityClass();
+
+        /** @var ContactEntity $contactEntity*/
         $contactEntity = new $contactEntity();
 
         foreach(['Name', 'Email', 'Phone', 'Agence', 'Dept', 'Canal'] as $key){
