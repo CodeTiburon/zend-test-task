@@ -53,14 +53,14 @@ Please apply the setting to do this.
 
 #### Note! Provided tasks and scenarios take into account just simple solutions in the code base. No complex testing required. In common cases, test tasks should be resolved from 2 up 4 hours by an experienced developer. The main idea is the usage of previous experience with development projects based on the Zend Framework ecosystem. Common approaches and fundamental knowledge of Design Patterns will help to resolve tasks without complex step-by-step debugging and investigation of the local environment.
 
-#### On the other hand, in case the candidate will face the complexity of how to apply a solution without IDE code autosuggestions and step-by-step debugging. The usage of the local environment is available with some shell commands to simplify the setup process.
+#### On the other hand, in case the candidate will face the complexity of how to apply a solution without IDE code autosuggestions and step-by-step debugging. The usage of the local environment is available with some bash commands to simplify the setup process.
 
-#### Preconditions od system requirement to use local environment:
+#### Preconditions of system requirement to use local environment:
 - Linux OS only: Ubuntu 18.04 LTS (Bionic Beaver) or MacOS
 - [Docker Engine: 18.09.0](http://docs.docker.com/install/)
 - [docker-compose](http://docs.docker.com/compose/install/)
 
-#### Local environment shell scripts:
+#### Local environment bash scripts:
 - Initialise local environment `bin/init`
 - Shutdown local environment `bin/down`
 - Review status of containers `bin/ps`
